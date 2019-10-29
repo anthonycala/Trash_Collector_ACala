@@ -21,7 +21,11 @@ namespace Trash_Collector.Models
         public int monthlyCharge { get; set; }
         public bool pickupConfirmed { get; set; }
         public bool start { get; set; }
+        public int startDate { get; set; }
         public bool end { get; set; }
+        public int endDate { get; set; }
+        public bool extraPickUp { get; set; }
+        public int extraPickUpDate { get; set; }
 
 
 

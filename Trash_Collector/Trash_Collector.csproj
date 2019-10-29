@@ -183,6 +183,10 @@
     <Compile Include="Migrations\201910282022333_AddCustomerAndEmployeeDBSet.Designer.cs">
       <DependentUpon>201910282022333_AddCustomerAndEmployeeDBSet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910291614466_UpdatedCustomerMigration.cs" />
+    <Compile Include="Migrations\201910291614466_UpdatedCustomerMigration.Designer.cs">
+      <DependentUpon>201910291614466_UpdatedCustomerMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -281,6 +285,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910282022333_AddCustomerAndEmployeeDBSet.resx">
       <DependentUpon>201910282022333_AddCustomerAndEmployeeDBSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910291614466_UpdatedCustomerMigration.resx">
+      <DependentUpon>201910291614466_UpdatedCustomerMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

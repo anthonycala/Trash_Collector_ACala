@@ -37,5 +37,6 @@ namespace Trash_Collector.Models
 
 
 
+
     }
 }

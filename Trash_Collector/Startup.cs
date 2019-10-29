@@ -39,25 +39,28 @@ namespace Trash_Collector
                     var result1 = UserManager.AddToRole(user.Id, "Admin");
 
                 }
-                if (!roleManager.RoleExists("Customer"))
-                {
-                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                    role.Name = "Customer";
-                    roleManager.Create(role);
-
-                }
-                if (!roleManager.RoleExists("Employee"))
-                {
-                    var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
-                    role.Name = "Employee";
-                    roleManager.Create(role);
-
-                }
+            }
+            if (!roleManager.RoleExists("Customer"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Customer";
+                roleManager.Create(role);
 
             }
+            if (!roleManager.RoleExists("Employee"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Employee";
+                roleManager.Create(role);
+
+            }
+
         }
     }
 }
+
+
+
 
     
 

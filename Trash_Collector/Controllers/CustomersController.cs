@@ -52,7 +52,7 @@ namespace Trash_Collector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,firstName,lastName,streetAddress,city,state,zipCode,pickupDay,balance,monthlyCharge,pickupConfirmed,start,end")] Customer customer)
+        public ActionResult Create(Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -65,17 +65,9 @@ namespace Trash_Collector.Controllers
         }
 
         // GET: Customers/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            Customer customer = db.Customers.Where(s => s.Id == id).FirstOrDefault();
             return View(customer);
         }
 
@@ -84,41 +76,61 @@ namespace Trash_Collector.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,firstName,lastName,streetAddress,city,state,zipCode,pickupDay,balance,monthlyCharge,pickupConfirmed,start,end")] Customer customer)
+        public ActionResult Edit(int Id, Customer customer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(customer).State = EntityState.Modified;
+                Customer dbcustomer = db.Customers.Where(s => s.Id == id).FirstOrDefault();
+                dbcustomer.firstName = customer.firstName;
+                dbcustomer.lastName = customer.lastName;
+                dbcustomer.streetAddress = customer.streetAddress;
+                dbcustomer.city = customer.city;
+                dbcustomer.state = customer.state;
+                dbcustomer.zipCode = customer.zipCode;
+                dbcustomer.pickupDay = customer.pickupDay;
+                dbcustomer.balance = customer.balance;
+                dbcustomer.monthlyCharge = customer.monthlyCharge;
+                dbcustomer.pickupConfirmed = customer.pickupConfirmed;
+                dbcustomer.start = customer.start;
+                dbcustomer.startDate = customer.startDate;
+                dbcustomer.end = customer.end;
+                dbcustomer.endDate = customer.endDate;
+                dbcustomer.extraPickUp = customer.extraPickUp;
+                dbcustomer.extraPickUpDate = customer.extraPickUpDate;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            catch
+            {
+                return View(customer);
+            }
+            
         }
 
         // GET: Customers/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            Customer customer =  db.Customers.Where(s => s.Id == id).FirstOrDefault();
             return View(customer);
         }
 
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, Customer customer)
         {
-            Customer customer = db.Customers.Find(id);
-            db.Customers.Remove(customer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                customer = db.Customers.Where(s => s.Id == id).FirstOrDefault();
+                db.Customers.Remove(customer);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(id);
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

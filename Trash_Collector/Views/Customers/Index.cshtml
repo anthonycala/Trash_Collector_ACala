@@ -63,49 +63,61 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.firstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.streetAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.city)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.state)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.zipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pickupDay)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.balance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.monthlyCharge)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.pickupConfirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.start)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.end)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.firstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.lastName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.streetAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.city)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.state)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.zipCode)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pickupDay)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.balance)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.monthlyCharge)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.pickupConfirmed)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.start)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.startDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.end)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.endDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.extraPickUp)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.extraPickUpDate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>

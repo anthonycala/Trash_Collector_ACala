@@ -10,21 +10,53 @@ namespace Trash_Collector.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Display (Name = "First Name")]
         public string firstName { get; set; }
+
+        [Display(Name = "Last Name")]
         public string lastName { get; set; }
+
+        [Display(Name = "Street Address")]
         public string streetAddress { get; set; }
+
+        [Display(Name = "City")]
         public string city { get; set; }
+
+        [Display(Name = "State")]
         public string state { get; set; }
+
+        [Display(Name = "Zip Code")]
         public int zipCode { get; set; }
+
+        [Display(Name = "Pickup Day")]
         public string pickupDay { get; set; }
+
+        [Display(Name = "Balance Due")]
         public int balance { get; set; }
+
+        [Display(Name = "Monthly Bill")]
         public int monthlyCharge { get; set; }
+
+        [Display(Name = "Pickup Confirmed")]
         public bool pickupConfirmed { get; set; }
+
+        [Display(Name = "Start Date Scheduled")]
         public bool start { get; set; }
+
+        [Display(Name = "Start Date")]
         public int startDate { get; set; }
+
+        [Display(Name = "End Date Scheduled")]
         public bool end { get; set; }
+
+        [Display(Name = "End Date")]
         public int endDate { get; set; }
+
+        [Display(Name = "Extra Pickup")]
         public bool extraPickUp { get; set; }
+
+        [Display(Name = "Extra Pickup Date")]
         public int extraPickUpDate { get; set; }
 
 

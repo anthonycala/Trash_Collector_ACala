@@ -45,19 +45,19 @@ namespace Trash_Collector.Models
         public bool start { get; set; }
 
         [Display(Name = "Start Date")]
-        public int startDate { get; set; }
+        public DateTime startDate { get; set; }
 
         [Display(Name = "End Date Scheduled")]
         public bool end { get; set; }
 
         [Display(Name = "End Date")]
-        public int endDate { get; set; }
+        public DateTime endDate { get; set; }
 
         [Display(Name = "Extra Pickup")]
         public bool extraPickUp { get; set; }
 
         [Display(Name = "Extra Pickup Date")]
-        public int extraPickUpDate { get; set; }
+        public DateTime extraPickUpDate { get; set; }
 
 
 

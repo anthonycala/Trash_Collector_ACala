@@ -80,7 +80,7 @@ namespace Trash_Collector.Controllers
         {
             try
             {
-                Customer dbcustomer = db.Customers.Where(s => s.Id == id).FirstOrDefault();
+                Customer dbcustomer = db.Customers.Where(s => s.Id == Id).FirstOrDefault();
                 dbcustomer.firstName = customer.firstName;
                 dbcustomer.lastName = customer.lastName;
                 dbcustomer.streetAddress = customer.streetAddress;

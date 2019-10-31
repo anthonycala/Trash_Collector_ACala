@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -58,6 +59,13 @@ namespace Trash_Collector.Models
 
         [Display(Name = "Extra Pickup Date")]
         public DateTime extraPickUpDate { get; set; }
+
+        //[ForeignKey("Account")]
+        //[Display (Name = "Customer Account")]
+        //public int CustomerId { get; set; }
+        //public CustomerId CustomerId { get; set; }
+
+        //public IEnumerable<Customer> Customer { get; set; }
 
 
 

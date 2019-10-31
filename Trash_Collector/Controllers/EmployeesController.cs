@@ -64,17 +64,9 @@ namespace Trash_Collector.Controllers
         }
 
         // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
+            Employee employee = db.Employees.Where(s => s.Id == id).FirstOrDefault();
             return View(employee);
         }
 
@@ -95,29 +87,31 @@ namespace Trash_Collector.Controllers
         }
 
         // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Employee employee = db.Employees.Find(id);
-            if (employee == null)
-            {
-                return HttpNotFound();
-            }
+            
+            Employee employee = db.Employees.Where(s => s.Id == id).FirstOrDefault();
             return View(employee);
         }
 
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, Employee employee)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                employee = db.Employees.Find(id);
+                db.Employees.Remove(employee);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            catch
+            {
+                return View(id);
+            }
+            
         }
 
         protected override void Dispose(bool disposing)

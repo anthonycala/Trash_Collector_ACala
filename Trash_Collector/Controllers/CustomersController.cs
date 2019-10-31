@@ -22,21 +22,14 @@ namespace Trash_Collector.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            return View(db.Customers.ToList());
+            List<Customer> customers = db.Customers.ToList();
+            return View(customers);
         }
 
         // GET: Customers/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Customer customer = db.Customers.Find(id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
+            Customer customer = db.Customers.Where(s => s.Id == id).FirstOrDefault();
             return View(customer);
         }
 
@@ -54,14 +47,19 @@ namespace Trash_Collector.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Customer customer)
         {
-            if (ModelState.IsValid)
+            try
             {
                 db.Customers.Add(customer);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                
+            }
+            catch
+            {
+                return View();
+
             }
 
-            return View(customer);
         }
 
         // GET: Customers/Edit/5
@@ -102,7 +100,7 @@ namespace Trash_Collector.Controllers
             }
             catch
             {
-                return View(customer);
+                return View();
             }
             
         }
@@ -117,7 +115,7 @@ namespace Trash_Collector.Controllers
         // POST: Customers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, Customer customer)
+        public ActionResult Delete(int id, Customer customer)
         {
             try
             {

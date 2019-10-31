@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201910311815154_FKAddMigrations.Designer.cs">
       <DependentUpon>201910311815154_FKAddMigrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910311955151_DayOfWeekMigration.cs" />
+    <Compile Include="Migrations\201910311955151_DayOfWeekMigration.Designer.cs">
+      <DependentUpon>201910311955151_DayOfWeekMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -306,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910311815154_FKAddMigrations.resx">
       <DependentUpon>201910311815154_FKAddMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910311955151_DayOfWeekMigration.resx">
+      <DependentUpon>201910311955151_DayOfWeekMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

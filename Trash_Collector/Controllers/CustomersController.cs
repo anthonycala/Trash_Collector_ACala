@@ -22,15 +22,16 @@ namespace Trash_Collector.Controllers
         // GET: Customers
         public ActionResult Index()
         {
-            List<Customer> customers = db.Customers.ToList();
+            
+            var customers = db.Customers.Include(s => s.ApplicationUser).ToList();
             return View(customers);
         }
 
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {
-            Customer customer = db.Customers.Where(s => s.Id == id).FirstOrDefault();
-            return View(customer);
+            var customers = db.Customers.Include(s => s.ApplicationUser).SingleOrDefault(s => s.Id == id);
+            return View(customers);
         }
 
         // GET: Customers/Create
@@ -78,7 +79,7 @@ namespace Trash_Collector.Controllers
         {
             try
             {
-                Customer dbcustomer = db.Customers.Where(s => s.Id == Id).FirstOrDefault();
+                var dbcustomer = db.Customers.Single(s => s.Id == customer.Id);
                 dbcustomer.firstName = customer.firstName;
                 dbcustomer.lastName = customer.lastName;
                 dbcustomer.streetAddress = customer.streetAddress;

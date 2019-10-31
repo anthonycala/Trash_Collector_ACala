@@ -19,9 +19,18 @@ namespace Trash_Collector.Controllers
         }
         
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            return View(db.Employees.ToList());
+            var employees = db.Employees.Include(s => s.ApplicationUser);
+            ViewBag.zipCodeSortPam = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
+            switch (sortOrder)
+            {
+                case "zipCode_desc":
+                    employees = employees.OrderByDescending(s => s.zipCode);
+                    break;
+                    
+            }
+            return View(employees.ToList());
         }
 
         // GET: Employees/Details/5

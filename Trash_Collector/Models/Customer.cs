@@ -60,12 +60,10 @@ namespace Trash_Collector.Models
         [Display(Name = "Extra Pickup Date")]
         public DateTime extraPickUpDate { get; set; }
 
-        //[ForeignKey("Account")]
-        //[Display (Name = "Customer Account")]
-        //public int CustomerId { get; set; }
-        //public CustomerId CustomerId { get; set; }
-
-        //public IEnumerable<Customer> Customer { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+        
 
 
 

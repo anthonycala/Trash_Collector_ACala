@@ -20,11 +20,23 @@ namespace Trash_Collector.Controllers
 
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            var customers = db.Customers.Include(s => s.ApplicationUser);
+            ViewBag.zipCodeSortParm = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
+            ViewBag.pickupDaySortPam = sortOrder == "pickupDay" ? "pickupDay_desc" : "pickupDay";
+            switch (sortOrder)
+            {
+                case "zipCode_desc":
+                    customers = customers.OrderByDescending(s => s.zipCode);
+                    break;
+                case "pickupDay_desc":
+                    customers = customers.OrderByDescending(s => s.pickupDay);
+                    break;
+                
+            }
             
-            var customers = db.Customers.Include(s => s.ApplicationUser).ToList();
-            return View(customers);
+            return View(customers.ToList());
         }
 
         // GET: Customers/Details/5

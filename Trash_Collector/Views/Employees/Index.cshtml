@@ -13,6 +13,7 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.zipCode)
+            @Html.ActionLink("Zip Code", "Index", new { sortOrder = ViewBag.zipCodeSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.firstName)

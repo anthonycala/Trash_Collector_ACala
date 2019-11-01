@@ -36,7 +36,7 @@ namespace Trash_Collector.Controllers
         // GET: Employees
         public ActionResult Index()
 
-        {   
+        {
 
             var UserId = User.Identity.GetUserId();
             var Employee = db.Employees.Where(s => s.ApplicationId == UserId).FirstOrDefault();

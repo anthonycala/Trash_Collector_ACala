@@ -36,13 +36,15 @@ namespace Trash_Collector.Controllers
         // GET: Employees
         public ActionResult Index()
 
-        {
+        {   
+
             var UserId = User.Identity.GetUserId();
             var Employee = db.Employees.Where(s => s.ApplicationId == UserId).FirstOrDefault();
             var CustomersInDb = db.Customers.Where(s => s.zipCode == Employee.zipCode).ToList();
-            //var CustomersDb  = CustomersInDb.Where(s => s.DayOfWeek == todays day
+            string thisDay = DateTime.Today.DayOfWeek.ToString();
+            var CustomersDb  = CustomersInDb.Where(s => s.pickupDay == thisDay).ToList();
 
-            return View();
+            return View(CustomersDb);
         }
 
 

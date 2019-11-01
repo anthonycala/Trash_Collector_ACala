@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -20,25 +21,32 @@ namespace Trash_Collector.Controllers
 
 
         // GET: Customers
-        public ActionResult Index(string sortOrder)
-        {
-            var customers = db.Customers.Include(s => s.ApplicationUser);
-            ViewBag.zipCodeSortParm = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
-            ViewBag.pickupDaySortParm = sortOrder == "pickupDay" ? "pickupDay_desc" : "pickupDay";
-            switch (sortOrder)
-            {
-                case "zipCode_desc":
-                    customers = customers.OrderByDescending(s => s.zipCode);
-                    break;
-                case "pickupDay_desc":
-                    customers = customers.OrderByDescending(s => s.pickupDay);
-                    break;
-                
-            }
-            
-            return View(customers.ToList());
-        }
+        //public ActionResult Index(string sortOrder)
+        //{
+        //    var customers = db.Customers.Include(s => s.ApplicationUser);
+        //    ViewBag.zipCodeSortParm = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
+        //    ViewBag.pickupDaySortParm = sortOrder == "pickupDay" ? "pickupDay_desc" : "pickupDay";
+        //    switch (sortOrder)
+        //    {
+        //        case "zipCode_desc":
+        //            customers = customers.OrderByDescending(s => s.zipCode);
+        //            break;
+        //        case "pickupDay_desc":
+        //            customers = customers.OrderByDescending(s => s.pickupDay);
+        //            break;
 
+        //    }
+
+        //    return View(customers.ToList());
+        //}
+        // GET: Customers
+        public ActionResult Index()
+        {
+
+            var UserId = User.Identity.GetUserId();
+            var Cusomters = db.Customers.Where(s => s.ApplicationId == UserId).FirstOrDefault();
+            return View();
+        }
         // GET: Customers/Details/5
         public ActionResult Details(int id)
         {

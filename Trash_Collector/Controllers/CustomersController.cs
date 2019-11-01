@@ -23,8 +23,8 @@ namespace Trash_Collector.Controllers
         public ActionResult Index(string sortOrder)
         {
             var customers = db.Customers.Include(s => s.ApplicationUser);
-            ViewBag.zipCodeSortPam = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
-            ViewBag.pickupDaySortPam = sortOrder == "pickupDay" ? "pickupDay_desc" : "pickupDay";
+            ViewBag.zipCodeSortParm = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
+            ViewBag.pickupDaySortParm = sortOrder == "pickupDay" ? "pickupDay_desc" : "pickupDay";
             switch (sortOrder)
             {
                 case "zipCode_desc":

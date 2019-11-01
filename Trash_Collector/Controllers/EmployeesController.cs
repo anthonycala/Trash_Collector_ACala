@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -19,19 +20,31 @@ namespace Trash_Collector.Controllers
         }
         
         // GET: Employees
-        public ActionResult Index(string sortOrder)
-        {
-            var employees = db.Employees.Include(s => s.ApplicationUser);
-            ViewBag.zipCodeSortPam = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
-            switch (sortOrder)
-            {
-                case "zipCode_desc":
-                    employees = employees.OrderByDescending(s => s.zipCode);
-                    break;
+        //public ActionResult Index(string sortOrder)
+        //{
+        //    var employees = db.Employees.Include(s => s.ApplicationUser);
+        //    ViewBag.zipCodeSortParm = String.IsNullOrEmpty(sortOrder) ? "zipCode_desc" : " ";
+        //    switch (sortOrder)
+        //    {
+        //        case "zipCode_desc":
+        //            employees = employees.OrderByDescending(s => s.zipCode);
+        //            break;
                     
-            }
-            return View(employees.ToList());
+        //    }
+        //    return View(employees.ToList());
+        //}
+        // GET: Employees
+        public ActionResult Index()
+
+        {
+            var UserId = User.Identity.GetUserId();
+            var Employee = db.Employees.Where(s => s.ApplicationId == UserId).FirstOrDefault();
+            var CustomersInDb = db.Customers.Where(s => s.zipCode == Employee.zipCode).ToList();
+            //var CustomersDb  = CustomersInDb.Where(s => s.DayOfWeek == todays day
+
+            return View();
         }
+
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
@@ -64,6 +77,7 @@ namespace Trash_Collector.Controllers
         {
             if (ModelState.IsValid)
             {
+                employee.ApplicationId = User.Identity.GetUserId();
                 db.Employees.Add(employee);
                 db.SaveChanges();
                 return RedirectToAction("Index");
